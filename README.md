@@ -305,4 +305,82 @@ La ejecución produjo un resultado estructurado con:
 - Revisión humana requerida: `true`.
 
 La ejecución posterior puede estar limitada por la cuota disponible de la API de Gemini.
-Evidencia del flujo 
+
+## Normalización de datos
+
+Antes de almacenar los resultados, el flujo normaliza los principales campos utilizados por el proceso:
+
+- `candidate_id`: se trata como texto y se eliminan espacios innecesarios.
+- `email`: se normaliza eliminando espacios y utilizando minúsculas.
+- `experience_years`: se convierte a valor numérico.
+- `match_score`: se trata como valor numérico entre 0 y 100.
+- `skills`: se mantiene como una lista de valores de texto.
+- Las fechas, cuando están disponibles, deben utilizar el formato `YYYY-MM-DD`.
+
+La normalización busca mantener consistencia de tipos y facilitar el almacenamiento y procesamiento posterior.
+
+## Manejo de errores
+
+El flujo incorpora una validación antes de considerar válido el resultado del análisis.
+
+Los campos críticos utilizados para la validación son:
+
+- `candidate_id`
+- `email`
+
+Si ambos campos están presentes, el candidato continúa por la ruta de procesamiento normal.
+
+Si alguno de estos campos está vacío, el registro se deriva a la ruta de revisión/error mediante el Router.
+
+Los documentos vacíos, incompletos o que no puedan ser procesados correctamente deben quedar en revisión humana en lugar de continuar como candidatos válidos.
+
+## Variables de configuración
+
+El flujo utiliza las siguientes configuraciones:
+
+| Variable | Descripción |
+|---|---|
+| `candidate_id` | Identificador del candidato |
+| `job_id` | Identificador de la posición |
+| `job_title` | Nombre de la posición |
+| `required_skills` | Habilidades requeridas |
+| `minimum_experience` | Experiencia mínima requerida |
+| `email` | Email del candidato |
+| `experience_years` | Años de experiencia normalizados |
+
+Los valores sensibles, credenciales y API keys no forman parte del repositorio.
+
+## Ejemplo de payload de entrada
+
+Ejemplo simplificado de los datos que puede recibir el webhook:
+
+```json
+{
+  "candidate_id": "CAND-001",
+  "candidate_name": "Ricardo Salinas",
+  "email": "hola@sitioincreible.com",
+  "job_id": "DEV-001",
+  "job_title": "Backend Developer",
+  "minimum_experience": 3,
+  "required_skills": [
+    "Python",
+    "SQL",
+    "Docker"
+  ]
+}
+
+
+Guardá con **Commit changes**.
+
+### 5. Después revisamos una cosa importante
+
+El evaluador también sugirió probar:
+
+1. CV válido.
+2. Documento vacío.
+3. Documento corrupto.
+
+**No los ejecutes todavía**, porque Gemini tiene el problema de cuota.
+
+Primero dejemos el README actualizado y después revisamos el blueprint exportado para asegurarnos de que refleja los cambios que hiciste.
+

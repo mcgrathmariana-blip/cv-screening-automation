@@ -289,3 +289,19 @@ El flujo principal fue implementado utilizando Make, Google Gemini y Google Shee
 La prueba realizada permitió comprobar la recepción del CV, el análisis mediante IA, la extracción estructurada de información y la comparación con los requisitos de una posición.
 
 La ejecución completa de producción requiere considerar los límites de cuota de la API utilizada y realizar pruebas adicionales antes de su uso operativo.
+
+## Resultado de prueba
+
+Se realizó una ejecución de prueba utilizando un CV de datos ficticios.
+
+La ejecución produjo un resultado estructurado con:
+
+- 8 años de experiencia.
+- Python y SQL como habilidades coincidentes.
+- Docker como habilidad faltante.
+- Match score de 75.
+- Clasificación `medium_match`.
+- Recomendación `review`.
+- Revisión humana requerida: `true`.
+
+La ejecución posterior puede estar limitada por la cuota disponible de la API de Gemini.

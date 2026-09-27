@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CandidateScreeningResult",
+  "description": "Estructura de datos para la clasificación y filtrado inicial de candidatos a partir de un CV.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "type": "string",
+      "description": "Identificador único del candidato."
+    },
+    "candidate_name": {
+      "type": "string",
+      "description": "Nombre completo del candidato."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Correo electrónico del candidato."
+    },
+    "job_id": {
+      "type": "string",
+      "description": "Identificador de la posición."
+    },
+    "job_title": {
+      "type": "string",
+      "description": "Nombre de la posición."
+    },
+    "experience_years": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Años estimados de experiencia laboral relevante."
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Habilidades identificadas en el CV."
+    },
+    "matching_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Habilidades del candidato que coinciden con los requisitos."
+    },
+    "missing_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Habilidades requeridas que no fueron identificadas."
+    },
+    "match_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Porcentaje estimado de coincidencia."
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "high_match",
+        "medium_match",
+        "low_match"
+      ],
+      "description": "Clasificación preliminar."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Resumen breve del nivel de adecuación."
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": [
+        "advance",
+        "review",
+        "reject"
+      ],
+      "description": "Recomendación para la siguiente etapa."
+    },
+    "requires_human_review": {
+      "type": "boolean",
+      "description": "Indica si el resultado requiere revisión humana."
+    }
+  },
+  "required": [
+    "candidate_id",
+    "candidate_name",
+    "email",
+    "job_id",
+    "job_title",
+    "experience_years",
+    "skills",
+    "matching_skills",
+    "missing_skills",
+    "match_score",
+    "classification",
+    "summary",
+    "recommendation",
+    "requires_human_review"
+  ]
+}

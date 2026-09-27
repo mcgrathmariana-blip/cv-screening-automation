@@ -305,3 +305,4 @@ La ejecución produjo un resultado estructurado con:
 - Revisión humana requerida: `true`.
 
 La ejecución posterior puede estar limitada por la cuota disponible de la API de Gemini.
+Evidencia del flujo 

@@ -369,18 +369,19 @@ Ejemplo simplificado de los datos que puede recibir el webhook:
   ]
 }
 
+## Historial de cambios
 
-Guardá con **Commit changes**.
+### Versión 1.1
 
-### 5. Después revisamos una cosa importante
+Se incorporaron mejoras luego de la primera revisión:
 
-El evaluador también sugirió probar:
+- Exportación del flujo como blueprint.
+- Organización de evidencias en `/assets`.
+- Normalización de campos del candidato.
+- Validación de `candidate_id` y `email`.
+- Ruta de revisión mediante Router.
+- Documentación de variables de configuración.
+- Ejemplo de payload de entrada.
 
-1. CV válido.
-2. Documento vacío.
-3. Documento corrupto.
 
-**No los ejecutes todavía**, porque Gemini tiene el problema de cuota.
-
-Primero dejemos el README actualizado y después revisamos el blueprint exportado para asegurarnos de que refleja los cambios que hiciste.
 
